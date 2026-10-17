@@ -75,7 +75,9 @@ while true; do
 
     printf '\n    %s[+]%s Running %s...\n' "$green" "$reset" "${labels[selected_index]}"
     printf '    %s--------------------------------------------------------%s\n\n' "$dim" "$reset"
-    if ! choice="${choices[selected_index]}" plaintext="$user_plaintext" python3 main.py; then
+        if ! choice="${choices[selected_index]}" plaintext="$user_plaintext" \
+        runuser -u crypto_user -- python3 main.py; then
+
         printf '\n    %s[!]%s main.py failed. Returning to the menu.\n' "$red" "$reset" >&2
     fi
 done

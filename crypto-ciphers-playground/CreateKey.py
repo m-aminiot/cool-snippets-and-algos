@@ -1,10 +1,10 @@
-from Crypto.Random import get_random_bytes
+from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 import os 
 
 
-KeySize = int(os.getenv("KeySize",32))
+
 try:    
-    key = get_random_bytes(KeySize)
+    key = ChaCha20Poly1305.generate_key()
     try:
         with open("key.txt", "w") as f:
             f.write(f"key={key.hex()}")
